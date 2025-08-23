@@ -12,11 +12,19 @@ import seaborn as sns
 #setando os dados do csv instalado no kaggle na variavel data
 data = pd.read_csv('titanic.csv')
 
+# Imprime o número de linhas originais
+print(f"Número de linhas originais: {len(data)}")
+
+# Conta as duplicatas antes de remover
+num_duplicatas_antes = data.duplicated().sum()
+print(f"Número de linhas duplicadas (antes de remover): {num_duplicatas_antes}")
+
 #A ideia aqui é ver e saber os tipos de dados das colunas, porque o algoritimo de ml só entende números
 #o print mostra a quantidade de dados nulos em cada coluna
 data.info()
 print(data.isnull().sum())
 
+print(data.columns)
 
 #dataCleaning 
 def preprocess_data(df):
@@ -50,17 +58,25 @@ def fill_missing_ages(df):
       age_fill_map[pclass] = df[df["Pclass"] == pclass]["Age"].median()
 
   #Seta o valor da idade com a mediana de cada classe
+  #Ou seja para cada linha ele valida se a Idade é nula e preenche com a mediana da classe do passageiro
   df["Age"] = df.apply(lambda row:age_fill_map[row["Pclass"]] if pd.isnull(row["Age"]) else row["Age"],axis=1)
 
 
 data = preprocess_data(data)
 
+# Remove as duplicatas após o pré-processamento, pois novas duplicatas podem ter sido criadas.
+data.drop_duplicates(inplace=True)
+print(f"Número de linhas após remover duplicatas (após pré-processamento): {len(data)}")
+
 print("\nMissing values after preprocessing:")
 print(data.isnull().sum())
 
+print("\nCorrelation Matrix after preprocessing:")
+print(data.corr(numeric_only=True)["Survived"].sort_values(ascending=False))
+
 #separa os dados em x e y, onde x são as features e y o target
-x = data.drop(columns=["Survived"])
-y = data["Survived"]
+x = data.drop(columns=["Survived", "Sex"]) # Removendo 'Sex' para evitar data leakage devido à correlação perfeita
+y = data["Survived"] #Aqui tem a resposta, sendo o que o modelo precisa chutar
 
 #criando os dados de treino e teste em que 25% dos dados serão de teste e 75% de treino
 #essas 4 variaveis são por exemplo um flashcard, em que x_train é a frente do flashcard e y_train o verso
@@ -73,6 +89,7 @@ imputer = SimpleImputer(strategy='mean')
 x_train = imputer.fit_transform(x_train)
 x_test = imputer.transform(x_test)
 
+#normaliza os dados para os valores das colunas terem somente um intervalo entra 1 e 0 para funcionar o as comparações entre diferentes "unidades" no modelo do KNN
 scaler = MinMaxScaler()
 x_train = scaler.fit_transform(x_train)
 x_test = scaler.transform(x_test)
