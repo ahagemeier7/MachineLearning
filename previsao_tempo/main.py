@@ -34,9 +34,10 @@ x_train_wea, x_test_wea,y_train_wea,y_test_wea = train_test_split(x,y,test_size=
 rf_weather = RandomForestClassifier(n_estimators=100, random_state=42)
 rf_weather.fit(x_train_wea, y_train_wea)
 
+
 #fazendo as previsões
 y_pred_wea = rf_weather.predict(x_test_wea)
-accurracy_weather = accuracy_score(y_test_wea,y_pred_wea,normalize=False)
+accurracy_weather = accuracy_score(y_test_wea,y_pred_wea,normalize=True)
 matrix = confusion_matrix(y_test_wea,y_pred_wea)
 print("-------------weather-------------")
 print(accurracy_weather)
