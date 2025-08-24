@@ -1,0 +1,150 @@
+__1. Data Loading and Initial Inspection__
+
+- __Goal:__ Get your `seattle-weather.csv` data into a usable format and understand its basic structure.
+
+- __Tool:__ `pandas` library in Python.
+
+- __How to do it:__
+
+  - Import `pandas`: `import pandas as pd`
+
+  - Load the CSV: `df = pd.read_csv('previsao_tempo/seattle-weather.csv')`
+
+  - Inspect the data:
+
+    - `df.head()`: Shows the first few rows.
+    - `df.info()`: Provides a summary of the DataFrame, including data types and non-null values. This is crucial for identifying columns that might need type conversion (like 'date').
+    - `df.describe()`: Gives statistical summaries (mean, min, max, etc.) for numerical columns.
+
+__2. Date Feature Engineering__
+
+- __Goal:__ Transform the `date` column into numerical features that your machine learning models can use.
+
+- __Why:__ Machine learning models typically work with numerical input. A raw date string isn't directly useful.
+
+- __Tool:__ `pandas` datetime properties.
+
+- __How to do it:__
+
+  - Convert the 'date' column to datetime objects: `df['date'] = pd.to_datetime(df['date'])`
+
+  - Extract relevant features. Common ones include:
+
+    - `df['year'] = df['date'].dt.year`
+    - `df['month'] = df['date'].dt.month`
+    - `df['day'] = df['date'].dt.day`
+    - `df['dayofweek'] = df['date'].dt.dayofweek` (0 for Monday, 6 for Sunday)
+    - `df['dayofyear'] = df['date'].dt.dayofyear`
+
+  - These new columns (`year`, `month`, `day`, `dayofweek`, `dayofyear`) will be your primary input features (X).
+
+__3. Target Variable Identification and Separation__
+
+- __Goal:__ Define which columns are your input features (X) and which are the values you want to predict (y).
+
+- __How to do it:__
+
+  - __Features (X):__ Create a DataFrame with the engineered date features: `X = df[['year', 'month', 'day', 'dayofweek', 'dayofyear']]`
+
+  - __Target Variables (y):__ Extract each target into its own Series:
+
+    - `y_precipitation = df['precipitation']`
+    - `y_temp_max = df['temp_max']`
+    - `y_temp_min = df['temp_min']`
+    - `y_wind = df['wind']`
+    - `y_weather = df['weather']`
+
+__4. Handling Categorical Target Variable (`weather`)__
+
+- __Goal:__ Convert the text-based `weather` categories (e.g., 'rain', 'sun', 'drizzle') into numerical labels, as machine learning models require numerical input/output.
+
+- __Tool:__ `sklearn.preprocessing.LabelEncoder`
+
+- __How to do it:__
+
+  - Import `LabelEncoder`: `from sklearn.preprocessing import LabelEncoder`
+  - Initialize the encoder: `le = LabelEncoder()`
+  - Fit and transform the `y_weather` column: `y_weather_encoded = le.fit_transform(y_weather)`
+  - __Important:__ Keep the `le` object! You'll need it later to convert your model's numerical predictions back into human-readable weather types.
+
+__5. Data Splitting__
+
+- __Goal:__ Divide your dataset into training and testing sets. This is crucial to evaluate your model's performance on data it hasn't seen before, preventing overfitting.
+
+- __Tool:__ `sklearn.model_selection.train_test_split`
+
+- __How to do it:__
+
+  - Import `train_test_split`: `from sklearn.model_selection import train_test_split`
+  - For each target variable, split `X` and its corresponding `y`: `X_train_prec, X_test_prec, y_train_prec, y_test_prec = train_test_split(X, y_precipitation, test_size=0.2, random_state=42)` (Repeat this for `temp_max`, `temp_min`, `wind`, and `y_weather_encoded`).
+  - `test_size=0.2` means 20% of the data will be used for testing.
+  - `random_state=42` ensures that your splits are reproducible.
+
+__6. Model Selection and Training__
+
+- __Goal:__ Choose appropriate models for your prediction tasks and train them using the training data.
+
+- __Tool:__ `sklearn.linear_model.LinearRegression` for continuous values, `sklearn.ensemble.RandomForestClassifier` for categorical values.
+
+- __How to do it:__
+
+  - __For Continuous Targets (`precipitation`, `temp_max`, `temp_min`, `wind`):__
+
+    - Import `LinearRegression`: `from sklearn.linear_model import LinearRegression`
+    - Initialize and train a model for each: `lr_precipitation = LinearRegression()` `lr_precipitation.fit(X_train_prec, y_train_prec)` (Repeat for `temp_max`, `temp_min`, `wind`)
+
+  - __For Categorical Target (`weather`):__
+
+    - Import `RandomForestClassifier`: `from sklearn.ensemble import RandomForestClassifier`
+    - Initialize and train the classifier: `rf_weather = RandomForestClassifier(n_estimators=100, random_state=42)` `rf_weather.fit(X_train_weather, y_train_weather_encoded)`
+      - `n_estimators` is the number of trees in the forest; 100 is a good starting point.
+
+__7. Model Evaluation__
+
+- __Goal:__ Assess how well your trained models perform on the unseen test data.
+
+- __Tool:__ `sklearn.metrics`
+
+- __How to do it:__
+
+  - __For Continuous Targets:__
+
+    - Import `mean_squared_error`: `from sklearn.metrics import mean_squared_error`
+    - Import `numpy`: `import numpy as np`
+    - Make predictions on the test set: `y_pred_prec = lr_precipitation.predict(X_test_prec)`
+    - Calculate Root Mean Squared Error (RMSE): `rmse_prec = np.sqrt(mean_squared_error(y_test_prec, y_pred_prec))`
+    - Print the RMSE for each continuous variable.
+
+  - __For Categorical Target (`weather`):__
+
+    - Import `accuracy_score`: `from sklearn.metrics import accuracy_score`
+    - Make predictions on the test set: `y_predt_weather_encoded = rf_weather.predict(X_test_weather)`
+    - Calculate accuracy: `accuracy_weather = accuracy_score(y_test_weather_encoded, y_pred_weather_encoded)`
+    - Print the accuracy.
+    - Optionally, decode some predictions back to original labels for better understanding: `le.inverse_transform(y_pred_weather_encoded[:5])`
+
+__8. Making Predictions for New Dates__
+
+- __Goal:__ Use your trained models to predict the weather parameters for a specific date you provide.
+
+- __How to do it:__
+
+  - Choose a new date (e.g., '2025-01-01').
+  - Convert this single date into the *exact same numerical features* (`year`, `month`, `day`, `dayofweek`, `dayofyear`) that you used for training. Make sure it's in a DataFrame format that your models expect (e.g., `pd.DataFrame({'year': [new_year], 'month': [new_month], ...})`).
+  - Use each trained model's `.predict()` method with this new date's featur
+  
+  
+  es.
+  - For the `weather` prediction, remember to use `le.inverse_transform()` on the numerical output to get the actual weather string.
+
+This outline provides a clear roadmap. You can start by creating a Python file, perhaps `previsao_tempo/main.py`, and implementing these steps. Let me know if you'd like to dive into the code for any specific step, or if you have any questions!
+
+<task_progress>
+
+- [x] Analyze requirements and data
+- [x] Set up necessary files
+- [x] Implement data loading and preprocessing
+- [x] Implement linear regression model for continuous variables
+- [x] Implement classification model for categorical 'weather'
+- [x] Evaluate models
+- [x] Provide a starting point for the user </task_progress>

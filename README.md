@@ -19,6 +19,34 @@ Nesse repositório contém alguns projetos em que ajudam a entender melhor o fun
 
     -   Depois disso eu crio um dicionário de parâmetros para testar os modelos e escolho o com melhor acurácia
     -   Depois faço o modelo fazer as previsões
-    -   Por fim crio um gráfico com matçibplot para mostrar a confusion matrix
+    -   Por fim crio um gráfico com matlibplot para mostrar a confusion matrix
+
+    O maior problema que encontrei durante esse projeto, foi que o modelo estava com 100% de acuracia. Isso me deixou desconfiado e depois de um tempo validado, eu descobri que o problema era na verdade no dataset que eu estava usando. Nele todos os Homens morriam, e todas as mulheres sobreviviam, então o que o modelo estava fazendo era considerar o gênero da pessoa e dizer que morria caso homem e sobrevivia caso mulher
+
+-Previsão do tempo - LinearRegression e RandomForestClassifier
+    Para esse projeto, a ideia inicial era criar um modelo para prever a temperatura maxima e minima, precipitação, vento e clima.
+    Para desenvolver o projeto eu peguei uma basse de dados do histórico de temperatura em Seattle, fiz algumas limpeza nos dados, convertendo tudo para inteiros, e removendo colunas desnecessárias.
+    Para testes foi treinado o modelo utilizando as features como as datas, então ele previa as targets em base do dia, o que não faz mto sentido, mas pelo menos consegui fazer funcionar e entender um pouco melhor. O output que eu consegui foi o seguinte:
+    -------------precepitation-------------
+    6.476272856552249
+    ----------------temp_max---------------
+    15.294961896316885
+    ----------------temp_min---------------
+    4.835010297301145
+    -----------------wind------------------
+    1.5392337456304364
+    -------------weather-------------
+    194.0
+    [[ 1  4  4  0  0]
+    [ 1 98 25  1  1]
+    [ 1 33 87  0  3]
+    [ 0  6  0  2  0]
+    [ 0 11  9  0  6]]
+
+    De precipitação ao vento os erros estão sendo medidos pelo rmse (Root Mean Squared Error), que basicamente calcula a distancia do chute com o valor correto.
+    Então se RMSE estiver em 0, quer dizer que o modelo é perfeito.
+
+    A partir desse primeiro resultado, irei ajustar todas as features para fazer sentido a maneira em que o modelo vai prever os valores. A ideia inical é:
+    Precipitação, temperatura máxima, temperatura mínima e velocidade do vento, vão ser todos previstos de acordo com os ultimos 7 dias, e o clima será previsto em cima desses outros valores
     
     
