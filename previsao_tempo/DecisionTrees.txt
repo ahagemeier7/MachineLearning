@@ -1,0 +1,24 @@
+Pontos a serem considerados:
+  Qual ordem de features usar para fazer a as divisões de branches
+  Qual é o ponto de divisão de de uma featur (ex: n_quartos < 5)
+  Quando parar de dividir os nodes
+
+Treinamento:
+  Calcular o ganho de informação para cada divisão possível
+  Dividir o dataset com a feature e o valor que de mais ganho de informação
+  Dividir a arvore e fazer a mesma coisa para todos os branches criados
+  Até que um criterio de parada seja alcançado
+
+Testando:
+  Seguir uma arvore até a gente chegar em um leaf node
+  e retornar a class label mais comum 
+
+Termos:
+  Ganho de informação (IG): IG = E(parent) - [weighted average] * E(children)
+  
+  Entropia (E): E = -Σ p(x) * log₂(p(x))
+  
+  p(x) = n° vezes que uma classe apareceu / n° total de nodes
+
+  Criterio de parada: podem ser o tamanho da arvore, numero minimo de amostras no nó, 
+    minimo de entropia que precisa acontecer para acontecer a divisão
