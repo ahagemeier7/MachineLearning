@@ -6,7 +6,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, mean_squared_error,confusion_matrix
 
 #Carregando e validando dados
-data = pd.read_csv("previsao_tempo/seattle-weather.csv")
+data = pd.read_csv("seattle-weather.csv")
 
 def data_preprocessing(df):
     #Converte a string date (20-01-2025) para colunas separadas, contendo somente números para o modelo entender

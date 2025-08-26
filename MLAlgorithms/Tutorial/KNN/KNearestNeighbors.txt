@@ -1,0 +1,4 @@
+KNN funciona calculando a distancia de um ponto em especifico comparado com outros pontos em um gráfico.
+Ele pega os pontos K mais próximos, e dependendo se é para classificação ou regressão ele é diferente.
+Regressão: pega a média dos valores
+Classificação: pega o label com a maioria dos votos
