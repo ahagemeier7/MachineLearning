@@ -1,0 +1,19 @@
+Em regressão linear a gente assume que a base de dados tem uma base linear, e sobre isso a gente desenha uma linha que vem dessa formula:
+Ý = w * x + b
+w = peso
+b = tendencia
+x = valor
+X = array de valores
+E faz a previsão de acordo com a distancia da linha
+
+PAra treianr o modelo é usado o gradient descent, que um calculo feito para descobrir o quanto os parametros tem que mudar
+dJ/Dw = 1/n Σ 2 * x (Ý - y)
+dJ/db = 1/2 Σ 2(Ý - y)
+
+Calculo de MeanSquaredError = j(w,b) = 1/n * Σ (y - (w * x + b))²
+
+Para o treinamento:
+  Inicializa o peso e tendencia como 0
+  
+A partir de um ponto de dado, preve o resultado usando a formla da linha, depois calcula o mse, e dpe usa gradient descent para descobrir o novo peso e tendencia.
+Repete esse processo n vezes para treinar ela, até tem um peso e a tendencia certa
