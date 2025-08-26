@@ -27,7 +27,6 @@ class DecisionTree:
     n_samples, n_feats = x.shape
     n_labels = (np.unique(y))
 
-
     #check the stopping criteria
     if(depth >= self.max_depth or n_labels==1 or n_samples<self.min_samples_split):
       leaf_value = self._most_common_label(y)
