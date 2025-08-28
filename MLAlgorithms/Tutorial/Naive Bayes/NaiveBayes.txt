@@ -1,0 +1,3 @@
+Esse algoritmo é um classificador que funciona a base de probabilidade, baseando o teorema de Bayes:
+
+P(y|X) = (P(X|y) * P(y)) /P(x)

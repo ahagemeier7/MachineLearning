@@ -1,0 +1,20 @@
+Esse algoritmo funciona de maneira  parecida a regressão linear mas ao inves de definir a linha entre os dados é usado uma probabilidade para descobrir os valores
+Colocando o valor em ums função
+S(x) = 1/ 1+ e^-x
+Ou 
+Y = h0(x) = 1/ 1+e^-wx+b
+
+Para calcular o erro usa a formula:
+j(w,b) = j(0) = 1/n Σ[y log(h0(x^i)) + (1 - y^i)log(1-h0(x^i))]
+
+Para diminuir o erro se usa gradient descent, em que vc vai alterando o peso em comparação ao erro 
+para calcular o peso e o vies de acordo com o gradient descent se usa:
+w = w - learning_rate * gradient
+b = b - learning_rate * gradient
+
+Passo para implementação
+
+Inicializa o peso e vies como zero
+E passa o dado para a função Y = h0(x) = 1/ 1+e^-wx+b
+calcula o erroUsa o gradient descent para ajustar o vies e peso de acordo com o menor erro
+repetir n vezes
