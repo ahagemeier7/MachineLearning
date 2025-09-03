@@ -1,3 +1,15 @@
+A Regressão Logística é um algoritmo de classificação binária que estima a probabilidade de uma amostra pertencer a uma das duas classes. Ela utiliza a função logística (sigmoide) para transformar a saída linear em uma probabilidade entre 0 e 1.
+
+Características:
+- Simples e eficiente para problemas lineares.
+- Fornece probabilidades, não apenas classes.
+
+Limitações:
+- Não captura relações não-lineares sem transformação das features.
+- Pode ser afetada por multicolinearidade.
+
+É muito usada em problemas de classificação como detecção de fraudes, diagnósticos médicos e análise de churn.
+
 Esse algoritmo funciona de maneira  parecida a regressão linear mas ao inves de definir a linha entre os dados é usado uma probabilidade para descobrir os valores
 Colocando o valor em ums função
 S(x) = 1/ 1+ e^-x

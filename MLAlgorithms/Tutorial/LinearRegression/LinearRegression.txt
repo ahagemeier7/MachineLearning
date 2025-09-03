@@ -1,3 +1,15 @@
+A Regressão Linear é um método estatístico para modelar a relação entre uma variável dependente contínua e uma ou mais variáveis independentes. O objetivo é ajustar uma linha (ou hiperplano) que minimize a soma dos erros quadráticos entre as previsões e os valores reais.
+
+Características:
+- Fácil de interpretar.
+- Útil para prever valores contínuos.
+
+Limitações:
+- Supõe relação linear entre as variáveis.
+- Sensível a outliers.
+
+Aplicações incluem previsão de preços, análise de tendências e avaliação de impacto de variáveis.
+
 Em regressão linear a gente assume que a base de dados tem uma base linear, e sobre isso a gente desenha uma linha que vem dessa formula:
 Ý = w * x + b
 w = peso

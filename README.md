@@ -1,32 +1,88 @@
-# MachineLearning
+# Machine Learning Projects
 
-Nesse repositório contém alguns projetos em que ajudam a entender melhor o funcionamento do aprendizado de maqui e deixo aqui uma breve descrição de cada projeto, erro encontrado, e uma descrição sobre alguns métodos importantes que possam me ajudar em problemas futuros.
+Este repositório reúne projetos desenvolvidos para aprofundar o entendimento sobre algoritmos de aprendizado de máquina. Cada projeto inclui uma breve descrição do modelo utilizado, desafios encontrados durante o desenvolvimento e observações relevantes para aplicações futuras.
 
--Previsão de sobrevicência no titanic - Modelo K-Near Neighbors (KNN)
-    Esse é um projeto base para eu entender o básico sobre as bibliotecas do matlibplot, scikit-learn e seaborn.
-    A ideia desse projeto é ter um modelo de aprendizado de maquina que leia um .csv que contém dados de passageiros hipotéticos do titanic e se sobreviveram ou não a ele.
-    -   Para iniciar esse projeto eu comecei com uma limpeza dos dados, inserindo valores a campos nulos e limpando as colunas desnecessárias.
-    -   Eu separo então os dados em features e targets em que vão servir de maneira análoga à Flash cards em que X é a parte da frente de um flash card e Y seria a parte traseira, que iria conter a resposta
-    
-    Essa parte eu acredito que seria bem importante deixar salvo aqui principalente se eu for usar novamente esse modelo do KNN:
+---
 
-        scaler = MinMaxScaler()
-        x_train = scaler.fit_transform(x_train)
-        x_test = scaler.transform(x_test)
-         
-    Esse código transforma os valores que tem na base de dados em números entre 0 e 1. Isso serve para fazer com que a IA consiga fazer toda a correlação dos dados conseguindo "Comparar" eles.
-    Um exemplo para entender isso, seria o caso de Age e Fare, se você for calcular a "distância" entre dois passageiros (como o KNN faz), a Tarifa, por ter valores muito maiores, vai dominar completamente o cálculo. A Idade, com seus valores menores, quase não fará diferença. É como tentar comparar a altura de uma pessoa (em metros) com o peso de um elefante (em quilos) diretamente.
+## Projetos
 
-    -   Depois disso eu crio um dicionário de parâmetros para testar os modelos e escolho o com melhor acurácia
-    -   Depois faço o modelo fazer as previsões
-    -   Por fim crio um gráfico com matlibplot para mostrar a confusion matrix
+### 1. Previsão de Sobrevivência no Titanic — K-Nearest Neighbors (KNN)
 
-    O maior problema que encontrei durante esse projeto, foi que o modelo estava com 100% de acuracia. Isso me deixou desconfiado e depois de um tempo validado, eu descobri que o problema era na verdade no dataset que eu estava usando. Nele todos os Homens morriam, e todas as mulheres sobreviviam, então o que o modelo estava fazendo era considerar o gênero da pessoa e dizer que morria caso homem e sobrevivia caso mulher
+Este projeto tem como objetivo prever a sobrevivência de passageiros do Titanic utilizando o algoritmo K-Nearest Neighbors (KNN). O foco principal é o aprendizado prático das bibliotecas `matplotlib`, `scikit-learn` e `seaborn`.
 
--Previsão do tempo - RandomForestClassifier
-    Para esse projeto, a ideia inicial era criar um modelo para prever o clima.
-    Para desenvolver o projeto eu peguei uma basse de dados do histórico de temperatura em Seattle, fiz algumas limpeza nos dados, convertendo tudo para inteiros, e removendo colunas desnecessárias.
-    Para testes foi treinado o modelo utilizando as features de data, precipitação, temperatura maxima e minima, vento 
+**Principais etapas do projeto:**
+- **Limpeza de Dados:** Tratamento de valores nulos e remoção de colunas irrelevantes.
+- **Separação de Features e Target:** Os dados são divididos em variáveis independentes (X) e dependentes (y), facilitando o treinamento do modelo.
+- **Normalização:** Utilização do `MinMaxScaler` para transformar os dados em uma escala de 0 a 1, garantindo que todas as variáveis tenham o mesmo peso no cálculo das distâncias.
+    ```python
+    scaler = MinMaxScaler()
+    x_train = scaler.fit_transform(x_train)
+    x_test = scaler.transform(x_test)
+    ```
+    *Observação:* A normalização é fundamental para evitar que variáveis com escalas maiores dominem o cálculo de distância do KNN.
+- **Validação de Modelos:** Teste de diferentes parâmetros para selecionar o modelo com melhor acurácia.
+- **Predição e Avaliação:** Realização de previsões e visualização da matriz de confusão com `matplotlib`.
+
+**Desafio encontrado:**  
+Durante o desenvolvimento, foi identificado que o dataset apresentava um viés: todos os homens morriam e todas as mulheres sobreviviam. Isso levou o modelo a tomar decisões baseadas apenas no gênero, resultando em uma acurácia artificialmente alta (100%). O problema foi solucionado após a análise crítica dos dados.
+
+---
+
+### 2. Previsão do Tempo — Random Forest Classifier
+
+O objetivo deste projeto é prever o clima utilizando o algoritmo Random Forest Classifier, com base em dados históricos de Seattle.
+
+**Principais etapas do projeto:**
+- **Limpeza e Preparação dos Dados:** Conversão de variáveis para o formato adequado e remoção de colunas desnecessárias.
+- **Seleção de Features:** Utilização de variáveis como data, precipitação, temperatura máxima e mínima, e velocidade do vento para prever o clima.
+- **Treinamento e Avaliação:** O modelo é treinado e avaliado para medir sua capacidade preditiva.
+
+---
+
+## Estrutura da Pasta `MLAlgorithms`
+
+A pasta `MLAlgorithms` contém implementações e tutoriais de diversos algoritmos clássicos de aprendizado de máquina, organizados da seguinte forma:
 
 
-  
+
+## Estrutura da Pasta `MLAlgorithms`
+
+A pasta `MLAlgorithms` contém implementações e tutoriais de diversos algoritmos clássicos de aprendizado de máquina, organizados da seguinte forma:
+
+- **Teste/**  
+  Pasta reservada para scripts de teste e experimentação dos algoritmos implementados.
+
+- **Tutorial/**  
+  Contém subpastas, cada uma dedicada a um algoritmo específico, com implementações, explicações e exemplos práticos:
+
+    - **DecisionTree/**  
+      - `DecisionTree.py`: Implementação de uma Árvore de Decisão do zero.
+      - Projeto: Demonstração da construção e uso de árvores de decisão para classificação de dados simples.
+      - `DecisionTrees.txt`: Explicação teórica e exemplos de aplicação.
+
+    - **KNN/**  
+      - `KNN.py`: Implementação do algoritmo K-Nearest Neighbors.
+      - Projeto: Classificação de pontos em conjuntos de dados sintéticos para ilustrar o funcionamento do KNN.
+      - `KNearestNeighbors.txt`: Material explicativo sobre o algoritmo.
+
+    - **LinearRegression/**  
+      - `LinearRegression.py`: Implementação de Regressão Linear.
+      - Projeto: Ajuste de uma reta a dados simulados para prever valores contínuos.
+      - `LinearRegression.txt`: Explicação teórica e exemplos.
+
+    - **LogisticRegression/**  
+      - `LogisticRegression.py`: Implementação de Regressão Logística.
+      - Projeto: Classificação binária em conjuntos de dados simulados para ilustrar a separação de classes.
+      - `LogisticRegression.txt`: Material explicativo sobre o algoritmo.
+
+    - **Naive Bayes/**  
+      - `NaiveBayes.py`: Implementação do classificador Naive Bayes.
+      - Projeto: Classificação de dados sintéticos para demonstrar o cálculo das probabilidades e a tomada de decisão do modelo.
+      - `NaiveBayes.txt`: Explicação teórica e exemplos de uso.
+
+    - **RandomForests/**  
+      - `RandomForest.py`: Implementação simplificada do algoritmo Random Forest.
+      - Projeto: Demonstração da combinação de múltiplas árvores de decisão para melhorar a acurácia em tarefas de classificação.
+      - `RandomForests.txt`: Material explicativo sobre o funcionamento do ensemble.
+
+Cada subpasta contém arquivos `.py` com a implementação do algoritmo e arquivos `.txt` com explicações teóricas e exemplos de uso prático.

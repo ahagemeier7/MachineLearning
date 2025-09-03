@@ -1,2 +1,14 @@
-Esse algoritmo funciona totalmente com base nas Decision Trees, em que ele divide o data set em algumas partes aleatórias e cria multiplas
+Random Forest é um algoritmo de ensemble que combina múltiplas Árvores de Decisão para melhorar a precisão e reduzir o overfitting. Cada árvore é treinada com uma amostra aleatória dos dados e, para cada divisão, apenas um subconjunto aleatório das features é considerado.
+
+Características:
+- Robusto contra overfitting.
+- Pode lidar com grandes conjuntos de dados e muitas features.
+
+Desvantagens:
+- Menos interpretável que uma única árvore.
+- Pode ser computacionalmente intensivo.
+
+É utilizado em tarefas como classificação de imagens, análise de crédito e bioinformática.
+
+Esse algorítmo funciona totalmente com base nas Decision Trees, em que ele divide o dataset em algumas partes aleatórias e cria multiplas
 arvores com ela, e com essas várias arvores ele pega o resultado delas que mais apareceu para prever qual é o resultado

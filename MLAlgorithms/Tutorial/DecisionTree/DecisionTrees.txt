@@ -1,3 +1,16 @@
+Árvores de Decisão são algoritmos de aprendizado supervisionado usados para tarefas de classificação e regressão. Elas funcionam dividindo os dados em subconjuntos com base em perguntas sobre os atributos, formando uma estrutura semelhante a uma árvore. Cada nó interno representa uma decisão baseada em uma feature, cada ramo representa o resultado dessa decisão e cada folha representa uma previsão final.
+
+Vantagens:
+- Fácil de interpretar e visualizar.
+- Não requer normalização dos dados.
+- Pode lidar com dados categóricos e numéricos.
+
+Desvantagens:
+- Propensas a overfitting.
+- Pequenas variações nos dados podem gerar árvores muito diferentes.
+
+Aplicações comuns incluem classificação de clientes, diagnósticos médicos e análise de risco.
+
 Pontos a serem considerados:
   Qual ordem de features usar para fazer a as divisões de branches
   Qual é o ponto de divisão de de uma featur (ex: n_quartos < 5)

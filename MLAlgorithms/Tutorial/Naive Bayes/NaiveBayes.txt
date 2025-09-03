@@ -1,3 +1,15 @@
+O Naive Bayes é uma família de classificadores probabilísticos baseados no Teorema de Bayes, assumindo independência entre as features. O classificador calcula a probabilidade de cada classe dado um conjunto de atributos e escolhe a classe com maior probabilidade.
+
+Características:
+- Muito eficiente para grandes volumes de dados.
+- Funciona bem mesmo com a suposição de independência simplificada.
+
+Limitações:
+- A suposição de independência raramente é verdadeira na prática.
+- Pode ter desempenho inferior se as features forem altamente correlacionadas.
+
+É amplamente utilizado em filtragem de spam, análise de sentimentos e classificação de textos.
+
 Esse algoritmo é um classificador que funciona a base de probabilidade, baseando o teorema de Bayes:
 
 P(y|X) = (P(X|y) * P(y)) /P(x)

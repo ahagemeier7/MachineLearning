@@ -1,3 +1,16 @@
+O K-Nearest Neighbors (KNN) é um algoritmo de classificação e regressão baseado em instâncias. Para classificar um novo ponto, o KNN identifica os 'K' exemplos mais próximos no conjunto de treinamento e atribui a classe mais comum entre eles (ou faz a média, no caso de regressão).
+
+Características:
+- Simples de implementar e entender.
+- Não faz suposições sobre a distribuição dos dados.
+- O desempenho depende fortemente da escolha de K e da métrica de distância.
+
+Desvantagens:
+- Pode ser lento para grandes conjuntos de dados.
+- Sensível a features com escalas diferentes (por isso, a normalização é importante).
+
+É amplamente utilizado em reconhecimento de padrões, recomendação de produtos e detecção de anomalias.
+
 KNN funciona calculando a distancia de um ponto em especifico comparado com outros pontos em um gráfico.
 Ele pega os pontos K mais próximos, e dependendo se é para classificação ou regressão ele é diferente.
 Regressão: pega a média dos valores
