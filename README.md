@@ -1,6 +1,6 @@
 # MachineLearning
 
-Nesse repositório contém alguns projetos em que ajudam a entender melhor o funcionamento do aprendizado de maqui e deixo aqui uma breve descrição de cada projeto, erro encontrado, e uma descrição sobre alguns métodos importantes que possam me ajudar em problemas futuros.
+Nesse repositório contém alguns projetos em que ajudam a entender melhor o funcionamento do aprendizado de maquina junto com uma breve descrição de cada modelo/projeto, erro encontrado, e uma sobre alguns métodos importantes que possam me ajudar em problemas futuros.
 
 -Previsão de sobrevicência no titanic - Modelo K-Near Neighbors (KNN)
     Esse é um projeto base para eu entender o básico sobre as bibliotecas do matlibplot, scikit-learn e seaborn.
@@ -14,7 +14,7 @@ Nesse repositório contém alguns projetos em que ajudam a entender melhor o fun
         x_train = scaler.fit_transform(x_train)
         x_test = scaler.transform(x_test)
          
-    Esse código transforma os valores que tem na base de dados em números entre 0 e 1. Isso serve para fazer com que a IA consiga fazer toda a correlação dos dados conseguindo "Comparar" eles.
+    Esse código transforma os valores que tem na base de dados em números entre 0 e 1. Isso serve para fazer com que a "IA" consiga fazer toda a correlação dos dados conseguindo "Comparar" eles.
     Um exemplo para entender isso, seria o caso de Age e Fare, se você for calcular a "distância" entre dois passageiros (como o KNN faz), a Tarifa, por ter valores muito maiores, vai dominar completamente o cálculo. A Idade, com seus valores menores, quase não fará diferença. É como tentar comparar a altura de uma pessoa (em metros) com o peso de um elefante (em quilos) diretamente.
 
     -   Depois disso eu crio um dicionário de parâmetros para testar os modelos e escolho o com melhor acurácia
@@ -26,7 +26,7 @@ Nesse repositório contém alguns projetos em que ajudam a entender melhor o fun
 -Previsão do tempo - RandomForestClassifier
     Para esse projeto, a ideia inicial era criar um modelo para prever o clima.
     Para desenvolver o projeto eu peguei uma basse de dados do histórico de temperatura em Seattle, fiz algumas limpeza nos dados, convertendo tudo para inteiros, e removendo colunas desnecessárias.
-    Para testes foi treinado o modelo utilizando as features de data, precipitação, temperatura maxima e minima, vento 
+    Para testes foi treinado o modelo utilizando as features de data, precipitação, temperatura maxima e minima e velocidade do vento, para prever o clima
 
 
   
