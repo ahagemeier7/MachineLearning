@@ -1,15 +1,29 @@
 # Machine Learning Projects
 
+<<<<<<< HEAD
 Este repositório reúne projetos desenvolvidos para aprofundar o entendimento sobre algoritmos de aprendizado de máquina. Cada projeto inclui uma breve descrição do modelo utilizado, desafios encontrados durante o desenvolvimento e observações relevantes para aplicações futuras.
+=======
+Nesse repositório contém alguns projetos em que ajudam a entender melhor o funcionamento do aprendizado de maquina junto com uma breve descrição de cada modelo/projeto, erro encontrado, e uma sobre alguns métodos importantes que possam me ajudar em problemas futuros.
+>>>>>>> 5eb42e745c163beae77f676cdb0b4f24bbf62862
 
 ---
 
+<<<<<<< HEAD
 ## Projetos
+=======
+        scaler = MinMaxScaler()
+        x_train = scaler.fit_transform(x_train)
+        x_test = scaler.transform(x_test)
+         
+    Esse código transforma os valores que tem na base de dados em números entre 0 e 1. Isso serve para fazer com que a "IA" consiga fazer toda a correlação dos dados conseguindo "Comparar" eles.
+    Um exemplo para entender isso, seria o caso de Age e Fare, se você for calcular a "distância" entre dois passageiros (como o KNN faz), a Tarifa, por ter valores muito maiores, vai dominar completamente o cálculo. A Idade, com seus valores menores, quase não fará diferença. É como tentar comparar a altura de uma pessoa (em metros) com o peso de um elefante (em quilos) diretamente.
+>>>>>>> 5eb42e745c163beae77f676cdb0b4f24bbf62862
 
 ### 1. Previsão de Sobrevivência no Titanic — K-Nearest Neighbors (KNN)
 
 Este projeto tem como objetivo prever a sobrevivência de passageiros do Titanic utilizando o algoritmo K-Nearest Neighbors (KNN). O foco principal é o aprendizado prático das bibliotecas `matplotlib`, `scikit-learn` e `seaborn`.
 
+<<<<<<< HEAD
 **Principais etapas do projeto:**
 - **Limpeza de Dados:** Tratamento de valores nulos e remoção de colunas irrelevantes.
 - **Separação de Features e Target:** Os dados são divididos em variáveis independentes (X) e dependentes (y), facilitando o treinamento do modelo.
@@ -86,3 +100,12 @@ A pasta `MLAlgorithms` contém implementações e tutoriais de diversos algoritm
       - `RandomForests.txt`: Material explicativo sobre o funcionamento do ensemble.
 
 Cada subpasta contém arquivos `.py` com a implementação do algoritmo e arquivos `.txt` com explicações teóricas e exemplos de uso prático.
+=======
+-Previsão do tempo - RandomForestClassifier
+    Para esse projeto, a ideia inicial era criar um modelo para prever o clima.
+    Para desenvolver o projeto eu peguei uma basse de dados do histórico de temperatura em Seattle, fiz algumas limpeza nos dados, convertendo tudo para inteiros, e removendo colunas desnecessárias.
+    Para testes foi treinado o modelo utilizando as features de data, precipitação, temperatura maxima e minima e velocidade do vento, para prever o clima
+
+
+  
+>>>>>>> 5eb42e745c163beae77f676cdb0b4f24bbf62862
